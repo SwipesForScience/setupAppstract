@@ -10,6 +10,7 @@
         <firebase-keys ref="firebasekeys"
          v-on:newFirebaseKeys="setNewFirebaseKeys"
          :firebaseIsReady="firebaseIsReady"
+         :projectname="projectname"
          />
       </tab-content>
 
@@ -90,6 +91,7 @@ export default {
       user: {},
       db: {},
       firebaseIsReady: false,
+      projectName: '',
       initializedDb: false,
       config,
     };
@@ -121,6 +123,7 @@ export default {
         });
       }
       console.log('hi there', firebase.app());
+      this.projectname = firebase.app().options.projectId;
       this.firebaseIsReady = true;
       config.firebaseKeys = this.firebaseKeys;
       // firebase.initializeApp(this.firebaseKeys);

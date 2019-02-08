@@ -23,7 +23,10 @@
     </div>
 
   <div v-else>
-    You're ready for the next step!
+    <p>
+      Your firebase project is <strong>{{projectname}}</strong>
+    </p>
+    <p>Click "Next" to continue!</p>
   </div>
   </div>
 </template>
@@ -38,6 +41,9 @@ export default {
   props: {
     firebaseIsReady: {
       type: Boolean,
+    },
+    projectname: {
+      type: String,
     },
   },
   data() {

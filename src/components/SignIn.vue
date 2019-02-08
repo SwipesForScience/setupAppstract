@@ -51,7 +51,11 @@
       </p> -->
     </div>
 
-    <div v-else>Thanks!
+    <div v-else>
+      <p>
+        You've signed in as <strong>{{this.user.displayName}}</strong>.
+        This is your admin account.
+      </p>
       <b-button @click="logout">Logout</b-button>
     </div>
 
@@ -66,6 +70,7 @@
  */
 import firebase from 'firebase';
 import _ from 'lodash';
+import Vue from 'vue';
 
 export default {
   name: 'login',
@@ -118,6 +123,13 @@ export default {
             .createUserWithEmailAndPassword(this.form.email, this.form.password)
             .then((user) => {
               console.log(user);
+              user.user.updateProfile({
+                displayName: this.form.username,
+              }).then(() => {
+                console.log('success', this.user.displayName);
+                this.$emit('displayName', this.user.displayName);
+                this.$forceUpdate();
+              });
             })
             .catch((err) => {
               // TODO: try creating a new account here.

@@ -1,6 +1,26 @@
 <template>
   <div>
-    <b-button @click="uploadConfigFile" v-if="!finalUrl">Upload</b-button>
+    <div v-if="!finalUrl">
+      <p>
+        <b-alert show>
+          Go to the "storage" tab in your <strong>firebase console</strong> and enable storage.
+        </b-alert>
+      </p>
+      <b-row>
+        <b-col>
+          <img class="w-100" src="@/assets/setupStorage01.png" />
+        </b-col>
+        <b-col>
+          <img class="w-100" src="@/assets/setupStorage02.png" />
+        </b-col>
+      </b-row>
+      <p class="mt-3">
+        After you've done that, click "upload":
+      </p>
+      <b-button @click="uploadConfigFile" >
+        Upload
+      </b-button>
+    </div>
 
     <div v-else>
       <p>Copy paste these rules to your Firebase storage "rules" tab</p>

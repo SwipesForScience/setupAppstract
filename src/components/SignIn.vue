@@ -70,12 +70,15 @@
  */
 import firebase from 'firebase';
 import _ from 'lodash';
-import Vue from 'vue';
+
 
 export default {
   name: 'login',
   props: {
     user: {
+      type: Object,
+    },
+    db: {
       type: Object,
     },
   },
@@ -129,6 +132,18 @@ export default {
                 console.log('success', this.user.displayName);
                 this.$emit('displayName', this.user.displayName);
                 this.$forceUpdate();
+                this.db.ref('/users/')
+                  .child(this.user.displayName)
+                  .child('score').set(0);
+                this.db.ref('/users/')
+                  .child(this.user.displayName)
+                  .child('level').set(0);
+                this.db.ref('/users/')
+                  .child(this.user.displayName)
+                  .child('taken_tutorial').set(false);
+                this.db.ref('/users/')
+                  .child(this.user.displayName)
+                  .child('consent').set(true);
               });
             })
             .catch((err) => {

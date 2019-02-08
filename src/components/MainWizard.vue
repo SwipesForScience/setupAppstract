@@ -17,7 +17,7 @@
       <tab-content title="Sign In"
                     icon="ti-user">
 
-        <sign-in v-if="firebaseIsReady" :user="user" />
+        <sign-in v-if="firebaseIsReady" :user="user" :db="db" />
         <div v-else>Please go back and enter your firebase keys to continue!</div>
 
       </tab-content>

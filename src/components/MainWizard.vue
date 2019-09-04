@@ -55,7 +55,7 @@
 
       <tab-content title="Last step"
                     icon="ti-check">
-        <final-step :config="config" />
+        <final-step :config="config" :user="user" />
       </tab-content>
   </form-wizard>
   </div>
